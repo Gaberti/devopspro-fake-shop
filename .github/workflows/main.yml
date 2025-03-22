@@ -11,11 +11,13 @@ jobs:
     steps:
       - name: Obter Codigo
         uses: actions/checkout@v4.2.2
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Construcao e envio docker image
         uses: docker/build-push-action@v6
         with:
@@ -23,8 +25,8 @@ jobs:
           push: true
           file: ./src/Dockerfile
           tags: gabberti/devopspro-fake-shop:v${{ github.run_number }}
-                gabberti/devopspro-fake-shop
-      - run: echo "Enviar para Docker Hub"
+                gabberti/devopspro-fake-shop:latest
+
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
