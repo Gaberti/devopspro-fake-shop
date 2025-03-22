@@ -23,11 +23,21 @@ jobs:
           push: true
           file: ./src/Dockerfile
           tags: gabberti/devopspro-fake-shop:v${{ github.run_number }}
+                gabberti/devopspro-fake-shop
       - run: echo "Enviar para Docker Hub"
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Obter código"
-      - run: echo "Configurar kubeconfig"
-      - run: echo "Apply"
+      - name: Obter código
+        uses: actions/checkout@v4.2.2
+      - uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.K8S_KUBECONFIG }}
+      - uses: Azure/k8s-deploy@v5
+        with:
+          manifests: |
+              k8s/deployment.yaml
+          images: | 
+              gabberti/devopspro-fake-shop:v${{ github.run_number }}
