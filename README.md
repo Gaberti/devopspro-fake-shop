@@ -15,12 +15,12 @@ DB_PORT	=>	Porta de conexão com o banco de dados PostgreSQL.
 
 ## Execução Pipeline - Github Actions
 
-1. Fazer o commit e push para a branch main
-2. Acompanhar execução de jobs
-    a. Job CI
-        i. Com criação da imagem
-        ii. Com deploy no docker hub
-    b. Job CD
-        i. Get do Config do cluster kubernetes na DigitalOcean (secret)
-        ii. Com deploy na pipeline do DigitalOcean
-    c. Acompanhar o IP público correspondente ao cluster
+- Fazer o commit e push para a branch main
+- Acompanhar execução de jobs
+    - Job CI
+        - Com criação da imagem
+        - Com deploy no docker hub
+    - Job CD
+        - Get do Config do cluster kubernetes na DigitalOcean (secret)
+        - Com deploy na pipeline do DigitalOcean
+    - Acompanhar o IP público correspondente ao cluster
