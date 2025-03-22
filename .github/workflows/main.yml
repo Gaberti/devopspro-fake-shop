@@ -22,7 +22,7 @@ jobs:
           context: ./src
           push: true
           file: ./src/Dockerfile
-          tags: gabberti/devopspro-fake-shop:v2
+          tags: gabberti/devopspro-fake-shop:v${{ github.run_number }}
       - run: echo "Enviar para Docker Hub"
   CD:
     needs: [CI]
