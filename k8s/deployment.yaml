@@ -46,12 +46,16 @@ metadata:
   name: fakeshop
 # parametros do objeto/deployment
 spec:
-  replicas: 10
+  replicas: 4
   selector: #Label = pod | Selector = Deployment
     matchLabels:
       app: fakeshop
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '5000'
+        prometheus.io/path: '/metrics'
       labels:
         app: fakeshop
     spec:
